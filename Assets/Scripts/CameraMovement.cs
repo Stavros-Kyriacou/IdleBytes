@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private float minDistance, maxDistance;
     private Vector3 origin;
     private Vector3 distance;
     private bool drag = false;
@@ -31,8 +32,7 @@ public class CameraMovement : MonoBehaviour
         if (drag)
         {
             mainCam.transform.position = origin - distance;
+            mainCam.transform.position = new Vector3(Mathf.Clamp(mainCam.transform.position.x, minDistance, maxDistance), Mathf.Clamp(mainCam.transform.position.y, minDistance, maxDistance), -10);
         }
-
-        
     }
 }
